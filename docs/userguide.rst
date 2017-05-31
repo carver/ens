@@ -170,6 +170,22 @@ Once called, the winning bidder will be refunded the difference between their bi
 
 If you are the winning bidder, congratulations!
 
+Managing Ownership
+----------------------
+
+After finalizing, you now own both the name in ENS and the deed in the Auction Registrar.
+
+As the name owner, you can use :code:`ens.setOwner` to transfer administration of the name to another account. The new name owner can manage that domain and all subdomains (see examples in "Interacting with the ENS registry"). That owner could further reassign the name to another account. None of those actions affect your ownership of the deed.
+
+As the deed owner, you have the right to revoke name ownership at any time, by using :code:`ethRegistrar.finalizeAuction` again. You can also choose to transfer the deed to another account with:
+
+::
+
+    ethRegistrar.transfer(web3.sha3('name'), newOwnerAddress)
+
+.. CAUTION::
+   Transferring the deed is **irrevocable**. Be sure that you have verified the correct address for the new owner. Additionally, the ether you paid to win the auction will be transferred with the deed to the new owner.
+
 .. _interacting:
 
 Interacting with the ENS registry
